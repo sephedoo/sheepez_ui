@@ -26,7 +26,7 @@ export default function About() {
           
           <div className="md:w-1/2">
             <p className="text-lg leading-relaxed mb-6">
-              Sheepenz is a dynamic news platform dedicated to delivering the latest updates across 
+              Sheepenz is a dynamic news platform dedicated to delivering the latest updates across
               technology, business, science, entertainment, and more. While we started as a tech-focused 
               hub, our vision is to evolve into a comprehensive news source covering a wide range of 
               topics that shape the world.
