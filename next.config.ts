@@ -1,7 +1,23 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  /* config options here */
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: '143.198.36.158',
+        port: '1337',
+        pathname: '/uploads/**',
+      },
+    ],
+  },
+  // Typescript configurations
+  typescript: {
+    // !! WARN !!
+    // Dangerously allow production builds to successfully complete even if
+    // your project has type errors.
+    // !! WARN !!
+    ignoreBuildErrors: false,
+  },
 };
 
-export default nextConfig;
+module.exports = nextConfig;
