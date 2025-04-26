@@ -1,25 +1,9 @@
-import { Article, ContentBlock } from "../../../types"; // Import the interfaces we created
+import { Article, ContentBlock } from "../../../types";
 import { getArticleByDocumentId, getArticles } from "../../../services/api";
 import Link from "next/link";
 import React from "react";
 
 export const revalidate = 60; // Revalidate this page every 60 seconds
-
-interface Params {
-  id: string; // This is still "id" as per Next.js URL parameters
-}
-
-interface ArticlePageProps {
-  params: Params;
-}
-
-export async function generateStaticParams(): Promise<{ id: string }[]> {
-  const response = await getArticles();
-
-  return (response.data || []).map((article) => ({
-    id: article.documentId, // Use documentId for the URL parameter
-  }));
-}
 
 // Component to render different types of content blocks
 const ContentBlockRenderer = ({ block }: { block: ContentBlock }) => {
@@ -76,13 +60,21 @@ const ContentBlockRenderer = ({ block }: { block: ContentBlock }) => {
   }
 };
 
+export async function generateStaticParams() {
+  const response = await getArticles();
+
+  return (response.data || []).map((article) => ({
+    id: article.documentId,
+  }));
+}
+
+// In Next.js App Router, page components accept { params, searchParams } directly
 export default async function ArticlePage({
   params,
-}: ArticlePageProps): Promise<React.ReactNode> {
-  // Make sure to await the params object
-  const resolvedParams = await Promise.resolve(params);
-  const documentId = resolvedParams.id; // This is the documentId from the URL
-
+}: {
+  params: { id: string };
+}) {
+  const documentId = params.id;
   const article = await getArticleByDocumentId(documentId);
 
   if (!article.data) {

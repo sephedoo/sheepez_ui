@@ -54,7 +54,12 @@ export const getArticleByDocumentId = async (documentId: string): Promise<Strapi
         slug: '',
         createdAt: '',
         updatedAt: '',
-        publishedAt: ''
+        publishedAt: '',
+        description: '',
+        cover: undefined,
+        author: undefined,
+        category: undefined,
+        blocks: []
       }, 
       meta: {} 
     };
