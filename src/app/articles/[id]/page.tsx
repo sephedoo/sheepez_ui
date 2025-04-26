@@ -29,31 +29,10 @@ const ContentBlockRenderer = ({ block }: { block: ContentBlock }) => {
 
     case "shared.media":
       // For media blocks, we'd typically include an image or other media
-      return (
-        <div className="my-6">
-          <div className="w-full">
-            <img
-              src="/placeholder-image.jpg"
-              alt="Media content"
-              className="w-full h-auto"
-            />
-          </div>
-        </div>
-      );
+      return null;
 
     case "shared.slider":
-      // For slider blocks, we'd typically include a carousel of images
-      return (
-        <div className="my-6">
-          <div className="w-full">
-            <img
-              src="/placeholder-image.jpg"
-              alt="Image slider"
-              className="w-full h-auto"
-            />
-          </div>
-        </div>
-      );
+      return null;
 
     default:
       return null;
@@ -126,7 +105,7 @@ export default async function ArticlePage({
           <div className="my-6">
             <div className="w-full rounded-lg overflow-hidden">
               <img
-                src={`${process.env.NEXT_PUBLIC_API_URL || ""}${cover.url}`}
+                src={`${process.env.STRAPI_API_URL || ""}${cover.url}`}
                 alt={cover.alternativeText || title}
                 className="w-full h-auto"
               />

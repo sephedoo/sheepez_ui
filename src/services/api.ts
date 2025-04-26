@@ -12,7 +12,7 @@ const api = axios.create({
 
 export const getArticles = async (): Promise<StrapiResponse<Article>> => {
   try {
-    const response = await api.get('/api/articles');
+    const response = await api.get('/api/articles?populate=cover');
     return response.data;
   } catch (error) {
     console.error('Error fetching articles:', error);
