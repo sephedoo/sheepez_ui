@@ -29,10 +29,21 @@ const ContentBlockRenderer = ({ block }: { block: ContentBlock }) => {
 
     case "shared.media":
       // For media blocks, we'd typically include an image or other media
-      return null;
+      return null
 
     case "shared.slider":
-      return null;
+      // For slider blocks, we'd typically include a carousel of images
+      return (
+        <div className="my-6">
+          <div className="w-full">
+            <img
+              src="/placeholder-image.jpg"
+              alt="Image slider"
+              className="w-full h-auto"
+            />
+          </div>
+        </div>
+      );
 
     default:
       return null;
