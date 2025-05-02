@@ -1,5 +1,5 @@
 import { Article, ContentBlock } from "../../../types";
-import { getArticleByDocumentId, getArticles } from "../../../services/api";
+import { getArticleBySlug } from "../../../services/api";
 import Link from "next/link";
 import React from "react";
 
@@ -50,22 +50,15 @@ const ContentBlockRenderer = ({ block }: { block: ContentBlock }) => {
   }
 };
 
-export async function generateStaticParams() {
-  const response = await getArticles();
-
-  return (response.data || []).map((article) => ({
-    id: article.documentId,
-  }));
-}
 
 // In Next.js App Router, page components accept { params, searchParams } directly
 export default async function ArticlePage({
   params,
 }: {
-  params: { id: string };
+  params: { slug: string };
 }) {
-  const documentId = params.id;
-  const article = await getArticleByDocumentId(documentId);
+  const slug:string = await params.slug;
+  const article = await getArticleBySlug(slug);
 
   if (!article.data) {
     return (

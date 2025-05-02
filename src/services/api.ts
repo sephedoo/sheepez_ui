@@ -12,6 +12,7 @@ const api = axios.create({
 
 export const getArticles = async (): Promise<StrapiResponse<Article>> => {
   try {
+    // If your API doesn't return slugs by default, you might need to add a populate parameter
     const response = await api.get('/api/articles?populate=cover');
     return response.data;
   } catch (error) {
@@ -60,6 +61,38 @@ export const getArticleByDocumentId = async (documentId: string): Promise<Strapi
         author: undefined,
         category: undefined,
         blocks: []
+      }, 
+      meta: {} 
+    };
+  }
+};
+
+export const getArticleBySlug = async (slug: string): Promise<StrapiSingleResponse<Article>> => {
+  try {
+    // Use a filter to get the article by slug
+    const response = await api.get(`/api/articles?filters[slug][$eq]=${slug}&populate=*`);
+    
+    // The response will be a collection, but we only want the first item
+    if (response.data.data && response.data.data.length > 0) {
+      return {
+        data: response.data.data[0],
+        meta: response.data.meta
+      };
+    }
+    
+    throw new Error(`Article with slug ${slug} not found`);
+  } catch (error) {
+    console.error(`Error fetching article with slug ${slug}:`, error);
+    return { 
+      data: {
+        id: 0,
+        documentId: '',
+        title: '',
+        slug: '',
+        createdAt: '',
+        updatedAt: '',
+        publishedAt: '',
+        description: ''
       }, 
       meta: {} 
     };
