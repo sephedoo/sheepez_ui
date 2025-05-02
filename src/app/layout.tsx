@@ -4,8 +4,8 @@ import Link from "next/link";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "SheepENZ - Next.js App",
-  description: "A modern Next.js application with Tailwind CSS",
+  title: "SheepENZ",
+  description: "NEWS & TECH",
 };
 
 export default function RootLayout({
