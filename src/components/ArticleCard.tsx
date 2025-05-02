@@ -12,7 +12,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
   const { documentId, title, description, publishedAt, cover } = article;
   
   // API URL for images
-  const apiUrl = process.env.STRAPI_API_URL || '';
+  const apiUrl = process.env.STRAPI_API_URL || 'api.sheepenz.net';
   
   return (
     <div className="border border-gray-200 p-4 rounded-md shadow-sm hover:shadow-md transition-shadow overflow-hidden flex flex-col">

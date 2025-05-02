@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { StrapiResponse, StrapiSingleResponse, Article } from '../types';
 
-const API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://143.198.36.193:1337/';
+const API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'https://api.sheepenz.net/';
 
 const api = axios.create({
   baseURL: API_URL,
