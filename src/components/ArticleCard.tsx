@@ -1,6 +1,5 @@
 // src/components/ArticleCard.tsx
 import Link from 'next/link';
-import Image from 'next/image';
 import { Article } from '../types';
 import React from 'react';
 
