@@ -1,6 +1,7 @@
-// src/app/layout.tsx
+// src/app/layout.tsx (modified version)
 import type { Metadata } from "next";
 import Link from "next/link";
+import NavBar from "@/components/Navbar"; // Using the @ alias from tsconfig
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -17,14 +18,14 @@ export default function RootLayout({
     <html lang="en">
       <body className="min-h-screen flex flex-col">
         <Header />
-        <main className="flex-grow">{children}</main>
+        <main className="flex-grow pb-12">{children}</main>
         <Footer />
       </body>
     </html>
   );
 }
 
-function Header() {
+async function Header() {
   return (
     <header className="border-b border-gray-200">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
@@ -33,12 +34,8 @@ function Header() {
             SheepENZ
           </Link>
           
-          <nav className="hidden md:flex ml-10">
-          </nav>
-        </div>
-        
-        <div className="flex items-center">
 
+          <NavBar />
         </div>
       </div>
     </header>
@@ -46,6 +43,7 @@ function Header() {
 }
 
 function Footer() {
+  // Footer implementation remains the same
   return (
     <footer className="bg-gray-100 border-t border-gray-200">
       <div className="container mx-auto px-4 py-8">
@@ -59,12 +57,8 @@ function Footer() {
             <h3 className="font-bold text-lg mb-4">Company</h3>
             <ul className="space-y-2">
               <li><Link href="/about" className="text-gray-600 hover:text-gray-900">About</Link></li>
-
             </ul>
           </div>
-          
-
-          
         </div>
         
         <div className="mt-8 pt-8 border-t border-gray-200 text-center text-gray-500">

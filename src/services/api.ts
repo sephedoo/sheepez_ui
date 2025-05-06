@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { StrapiResponse, StrapiSingleResponse, Article } from '../types';
+import { StrapiResponse, StrapiSingleResponse, Article, Category } from '../types';
 
 const API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'https://api.sheepenz.net/';
 
@@ -95,6 +95,26 @@ export const getArticleBySlug = async (slug: string): Promise<StrapiSingleRespon
         description: ''
       }, 
       meta: {} 
+    };
+  }
+};
+
+export const getCategories = async (): Promise<StrapiResponse<Category>> => {
+  try {
+    const response = await api.get('/api/categories');
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching categories:', error);
+    return { 
+      data: [], 
+      meta: { 
+        pagination: { 
+          page: 0, 
+          pageSize: 0, 
+          pageCount: 0, 
+          total: 0 
+        } 
+      } 
     };
   }
 };
