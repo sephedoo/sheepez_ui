@@ -17,18 +17,18 @@ interface GetArticlesParams {
   category?: string;
 }
 
-
 export const getArticles = async (params: GetArticlesParams = {}): Promise<StrapiResponse<Article>> => {
   const { page = 1, pageSize = 9, sort = 'publishedAt:desc', category } = params;
 
   try {
-    // If your API doesn't return slugs by default, you might need to add a populate parameter
+    // Include populate parameter to get related content like cover, author, and category
     let url = `/api/articles?pagination[page]=${page}&pagination[pageSize]=${pageSize}&populate=cover&sort=${sort}`;
     
     // Add category filter if provided
     if (category) {
       url += `&filters[category][slug][$eq]=${category}`;
     }
+    
     const response = await api.get(url);
     return response.data;
   } catch (error) {
